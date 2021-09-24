@@ -1,0 +1,36 @@
+import java.util.Date;
+
+public class Transaction {
+
+    private double amount;
+    private Date timestemp;
+    private String memo;
+    private Account inAccount;
+
+    public Transaction(double amount, Account inAccount){
+        this.amount = amount;
+        this.inAccount = inAccount;
+        this.timestemp = new Date();
+        this.memo = "";
+    }
+
+    public Transaction(double amount, String memo, Account inAccount){
+        this(amount, inAccount);
+        this.memo = memo;
+    }
+
+    public double getAmount() {
+        return this.amount;
+    }
+
+    public String getSummaryLine() {
+
+        if (this.amount >= 0){
+            return String.format("%s : BYN%.02f : %s", this.timestemp.toString(),
+                    this.amount, this.memo);
+        }else {
+            return String.format("%s : BYN(%.02f) : %s", this.timestemp.toString(),
+                    this.amount, this.memo);
+        }
+    }
+}
